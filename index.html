@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Company Predictor</title>
+		<meta charset="utf-8">
+	</head>
+	
+	<body>
+		<input id="q" /> 
+		<button id="search">Search</button>
+		<div id="results"></div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+		<script>
+			$(function () {
+				var socket = io();
+				
+				socket.on('results', function(result) {
+					$('#results').append('<p>' + result + '</p>');
+					console.log('lol', result);
+				});
+				
+				$('#search').click(function() {
+					console.log('click', $('#q').val());
+					socket.emit('search', $('#q').val());
+				});
+			});
+		</script>
+	</body>
+	
+</html>

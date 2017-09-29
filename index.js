@@ -43,6 +43,6 @@ io.on('connection', function(socket) {
 	});
 });
 
-http.listen(1266, function() {
+http.listen(process.env.PORT || 1266, function() {
 	console.log('server listening on *:1266');
 });
